@@ -24,6 +24,9 @@ import org.springframework.web.reactive.DispatcherHandler;
 
 import java.util.List;
 
+/**
+ * 初始化初始化 RedisRateLimiter 限流功能
+ */
 @Configuration
 @AutoConfigureAfter(RedisReactiveAutoConfiguration.class)
 @AutoConfigureBefore(GatewayAutoConfiguration.class)

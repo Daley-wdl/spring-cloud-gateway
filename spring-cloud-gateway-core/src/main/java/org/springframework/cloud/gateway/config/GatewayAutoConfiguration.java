@@ -61,9 +61,25 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
+ * GatewayAutoConfiguration配置是Spring Cloud Gateway 核心配置类，初始化如下 ：
+ *
+ * 	NettyConfiguration 底层通信netty配置
+ * 	GlobalFilter （AdaptCachedBodyGlobalFilter，RouteToRequestUrlFilter，ForwardRoutingFilter，ForwardPathFilter，WebsocketRoutingFilter，WeightCalculatorWebFilter等）
+ * 	FilteringWebHandler
+ * 	GatewayProperties
+ * 	PrefixPathGatewayFilterFactory
+ * 	RoutePredicateFactory
+ * 	RouteDefinitionLocator
+ * 	RouteLocator
+ * 	RoutePredicateHandlerMapping 查找匹配到 Route并进行处理
+ * 	GatewayWebfluxEndpoint 管理网关的 HTTP API
+ *
  * @author Spencer Gibb
  */
 @Configuration
+//条件注解
+//通过 spring.cloud.gateway.enabled配置网关的开启与关闭
+//matchIfMissing = true => 网关默认开启
 @ConditionalOnProperty(name = "spring.cloud.gateway.enabled", matchIfMissing = true) // 默认开启
 @EnableConfigurationProperties
 @AutoConfigureBefore(HttpHandlerAutoConfiguration.class)
